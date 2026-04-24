@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
             $table->enum('category', ['food', 'drink'])->default('food');

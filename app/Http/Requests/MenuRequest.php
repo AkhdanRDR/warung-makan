@@ -24,7 +24,7 @@ class MenuRequest extends FormRequest
     {
         $isUpdate = $this->isMethod('put') || $this->isMethod('patch');
         return [
-            'name' => ($isUpdate ? 'sometimes' : 'required') . '|string|max:255',
+            'name' => ($isUpdate ? 'sometimes' : 'required') . '|string|unique:menus,name|max:255',
             'description' => 'nullable|string',
             'price' => ($isUpdate ? 'sometimes' : 'required') . '|numeric|min:0',
             'category' => ($isUpdate ? 'sometimes' : 'required') . '|in:food,drink',
