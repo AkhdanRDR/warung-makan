@@ -27,8 +27,8 @@ class MenuRequest extends FormRequest
             'name' => ($isUpdate ? 'sometimes' : 'required') . '|string|unique:menus,name|max:255',
             'description' => 'nullable|string',
             'price' => ($isUpdate ? 'sometimes' : 'required') . '|numeric|min:0',
-            'category' => ($isUpdate ? 'sometimes' : 'required') . '|in:food,drink',
-            'status' => ($isUpdate ? 'sometimes' : 'required') . '|in:available,unavailable',
+            'category' => ($isUpdate ? 'sometimes' : 'required') . '|in:makanan,minuman',
+            'status' => ($isUpdate ? 'sometimes' : 'required') . '|in:tersedia,tidak-tersedia',
             'image' => 'sometimes|nullable|image|max:2048',
         ];
     }
@@ -41,24 +41,25 @@ class MenuRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'The name field is required.',
-            'name.string' => 'The name must be a string.',
-            'name.max' => 'The name may not be greater than 255 characters.',
+            'name.required' => 'Nama menu wajib diisi.',
+            'name.string' => 'Nama menu harus berupa string.',
+            'name.unique' => 'Nama menu sudah ada.',
+            'name.max' => 'Nama menu tidak boleh lebih dari 255 karakter.',
 
-            'description.string' => 'The description must be a string.',
+            'description.string' => 'Deskripsi harus berupa string.',
 
-            'price.required' => 'The price field is required.',
-            'price.numeric' => 'The price must be a number.',
-            'price.min' => 'The price must be at least 0.',
+            'price.required' => 'Harga wajib diisi.',
+            'price.numeric' => 'Harga harus berupa angka.',
+            'price.min' => 'Harga tidak boleh kurang dari 0.',
 
-            'category.required' => 'The category field is required.',
-            'category.in' => 'The category must be either food or drink.',
+            'category.required' => 'Kategori wajib diisi.',
+            'category.in' => 'Kategori harus berupa makanan atau minuman.',
 
-            'status.required' => 'The status field is required.',
-            'status.in' => 'The status must be either available or unavailable.',
+            'status.required' => 'Status wajib diisi.',
+            'status.in' => 'Status harus berupa tersedia atau tidak tersedia.',
 
-            'image.image' => 'The image must be a valid image file.',
-            'image.max' => 'The image may not be greater than 2048 kilobytes.',
+            'image.image' => 'Gambar harus berupa file gambar yang valid.',
+            'image.max' => 'Gambar tidak boleh lebih dari 2048 kilobyte.',
         ];
     }
 }

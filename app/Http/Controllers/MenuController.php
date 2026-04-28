@@ -8,6 +8,7 @@ use App\Helpers\ExceptionMapper;
 use App\Http\Handlers\MenuHandler;
 use App\Http\Requests\MenuRequest;
 use App\Http\Resources\MenuResource;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -84,6 +85,9 @@ class MenuController extends Controller
                 MenuResource::make($data),
                 200
             );
+        } catch (ModelNotFoundException $e) {
+            DB::rollBack();
+            throw $e;
         } catch (\Throwable $th) {
             return BaseResponse::Error(
                 'Gagal mengambil menu',
@@ -107,6 +111,9 @@ class MenuController extends Controller
                 MenuResource::make($data),
                 200
             );
+        } catch (ModelNotFoundException $e) {
+            DB::rollBack();
+            throw $e;
         } catch (\Throwable $th) {
             DB::rollBack();
             if (isset($request->image)) {
@@ -134,6 +141,9 @@ class MenuController extends Controller
                 null,
                 200
             );
+        } catch (ModelNotFoundException $e) {
+            DB::rollBack();
+            throw $e;
         } catch (\Throwable $th) {
             DB::rollBack();
             return BaseResponse::Error(
@@ -158,6 +168,9 @@ class MenuController extends Controller
                 MenuResource::make($data),
                 200
             );
+        } catch (ModelNotFoundException $e) {
+            DB::rollBack();
+            throw $e;
         } catch (\Throwable $th) {
             DB::rollBack();
             return BaseResponse::Error(

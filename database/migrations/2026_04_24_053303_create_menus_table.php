@@ -15,8 +15,8 @@ return new class extends Migration {
             $table->string('name')->unique();
             $table->text('description')->nullable();
             $table->decimal('price', 8, 2);
-            $table->enum('category', ['food', 'drink'])->default('food');
-            $table->enum('status', ['available', 'unavailable'])->default('available');
+            $table->enum('category', ['makanan', 'minuman'])->default('makanan');
+            $table->enum('status', ['tersedia', 'tidak-tersedia'])->default('tersedia');
             $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
