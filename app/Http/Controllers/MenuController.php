@@ -87,7 +87,11 @@ class MenuController extends Controller
             );
         } catch (ModelNotFoundException $e) {
             DB::rollBack();
-            throw $e;
+            return BaseResponse::Error(
+                'Menu tidak ditemukan',
+                null,
+                ExceptionMapper::getStatusCode($e)
+            );
         } catch (\Throwable $th) {
             return BaseResponse::Error(
                 'Gagal mengambil menu',
@@ -113,7 +117,11 @@ class MenuController extends Controller
             );
         } catch (ModelNotFoundException $e) {
             DB::rollBack();
-            throw $e;
+            return BaseResponse::Error(
+                'Menu tidak ditemukan',
+                null,
+                ExceptionMapper::getStatusCode($e)
+            );
         } catch (\Throwable $th) {
             DB::rollBack();
             if (isset($request->image)) {
@@ -143,7 +151,11 @@ class MenuController extends Controller
             );
         } catch (ModelNotFoundException $e) {
             DB::rollBack();
-            throw $e;
+            return BaseResponse::Error(
+                'Menu tidak ditemukan',
+                null,
+                ExceptionMapper::getStatusCode($e)
+            );
         } catch (\Throwable $th) {
             DB::rollBack();
             return BaseResponse::Error(
@@ -170,7 +182,11 @@ class MenuController extends Controller
             );
         } catch (ModelNotFoundException $e) {
             DB::rollBack();
-            throw $e;
+            return BaseResponse::Error(
+                'Menu tidak ditemukan',
+                null,
+                ExceptionMapper::getStatusCode($e)
+            );
         } catch (\Throwable $th) {
             DB::rollBack();
             return BaseResponse::Error(
